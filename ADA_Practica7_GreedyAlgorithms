@@ -37,7 +37,7 @@ char* comprimir(const char* word) {
 }
 
 int main() {
-    char word[199999]; //199999
+    char word[199999]; //2*10^5
     printf("Palabra:\n\t");
     scanf("%199999s", word); //No colocamos & ya que trabajamos con punteros
     char* wordNew = comprimir(word);
