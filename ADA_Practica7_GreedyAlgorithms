@@ -1,8 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
-char* comprimir(const char* word) {
+bool valida(const char* word){ 
+    for (int i=0; word[i]!='\0'; i++) 
+    {
+        if (word[i]<'a' || word[i]>'z')
+            return false; 
+    } 
+    return true;  
+} 
+
+void ingresarPalabra(char* word){ 
+    printf("Palabra:\n\t");
+    scanf("%199999s", word); //No colocamos & ya que trabajamos con punteros
+    if (!valida(word))
+    { 
+        printf("ERROR. Las letras deben ser minusculas y del alfabeto inglés.\n\n");
+        ingresarPalabra(word);
+    } 
+}
+
+char* comprimir(const char* word){
     int n=strlen(word);
     char* resp=(char*)malloc(2*n*sizeof(char));
     int posicion=0;
@@ -14,7 +34,7 @@ char* comprimir(const char* word) {
         
         while (j<n && word[j]==word[i]) 
         {
-            ++j;
+            j++;
         }
         
         cant=j-i;
@@ -37,9 +57,9 @@ char* comprimir(const char* word) {
 }
 
 int main() {
-    char word[199999]; //2*10^5
-    printf("Palabra:\n\t");
-    scanf("%199999s", word); //No colocamos & ya que trabajamos con punteros
+    char word[199999]; 
+    ingresarPalabra(word);
+    
     char* wordNew = comprimir(word);
     printf("\nPalabra comprimida: \n\t%s\n", wordNew);
     return 0;
