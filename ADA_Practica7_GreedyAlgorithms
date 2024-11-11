@@ -28,7 +28,7 @@ char* comprimir(const char* word) {
                 
             resp[posicion++]='0'+max;
             resp[posicion++]=word[i];
-            cant -= max;
+            cant=cant-max;
         }
         i=j;
     }
